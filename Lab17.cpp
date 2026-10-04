@@ -39,6 +39,15 @@ int main() {
         cout << "7. Exit" << endl;
         cout << "Choice --> ";
         cin >> menuChoice;
+        cout << "\n";
+
+        //In case user does not use numbers
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Only numbers allowed. Enter a number from 1-7.\n";
+            continue;
+        }
 
         switch (menuChoice) {
             case 1:
@@ -122,9 +131,33 @@ void deleteNode(Node *&head){
 
     output(head);
 
+    int size = 0;
+    Node *temp = head;
+
+    while (temp) {
+        size++;
+        temp = temp -> next;
+    }
+
     int entry;
-    cout << "Which node do you want to delete?";
-    cin >> entry;
+
+    //In case user inputs a node that doesnt exist
+    do {
+        cout << "Which node do you want to delete: ";
+        cin >> entry;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Only numbers allowed. Please enter a valid node." << endl;
+            continue;
+        }
+
+        if (entry < 1 || entry > size) {
+            cout << "Node not found. Choose 1-" << size << "." << endl;
+        }
+
+    } while (entry < 1 || entry > size);
 
     Node *current = head;
     Node *prev = nullptr;
@@ -154,11 +187,34 @@ void insertNode(Node *&head){
 
     output(head);
 
+    int size = 0;
+    Node *temp = head;
+
+    while (temp) {
+        size++;
+        temp = temp->next;
+    }
+
     int entry;
     float value; //in case of decimal number
 
-    cout << "After which node to insert value: ";
-    cin >> entry;
+    //In case user inputs invalid values
+    do {
+        cout << "After which node to insert: ";
+        cin >> entry;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Only numbers allowed. Enter a valid node." << endl;
+            continue;
+        }
+
+        if (entry < 0 || entry > size) {
+            cout << "Node not found. Choose 0-" << size << "." << endl;
+        }
+
+    } while (entry < 0 || entry > size);
 
     cout << "Enter a valid value: ";
     cin >> value;
@@ -200,7 +256,7 @@ void deleteList(Node *&head){
 
     head = nullptr;
 
-    cout << "\nList deleted." << endl;
+    cout << "List deleted." << endl;
 }
 
 void output(Node *hd) {
@@ -212,11 +268,8 @@ void output(Node *hd) {
 
     int count = 1;
     Node *current = hd;
-    cout << "\n";
     while (current) {
         cout << "[" << count++ << "] " << current->value << endl;
         current = current->next;
     }
-
-    cout << endl;
 }
