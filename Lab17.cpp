@@ -28,13 +28,13 @@ int main() {
     int menuChoice;
 
     do {
-        cout << " > Choose a number to do < " << endl;
+        cout << "\n > Choose a number to do < " << endl;
         cout << "-------------------------" << endl;
         cout << "1. Add node to front" << endl;
         cout << "2. Add node to end" << endl;
         cout << "3. Delete a node" << endl;
         cout << "4. Insert a node" << endl;
-        //cout << "5. Delete the list" << endl;
+        cout << "5. Delete the list" << endl;
         cout << "6. Print the list" << endl;
         cout << "7. Exit" << endl;
         cout << "Choice --> ";
@@ -56,11 +56,11 @@ int main() {
             case 4:
                 insertNode(head);
                 break;
-            /*
+            
             case 5:
                 deleteList(head);
                 break;
-            */
+            
             case 6:
                 output(head);
                 break;
@@ -75,23 +75,6 @@ int main() {
 
     } while (menuChoice != 7); 
 
-
-
-
-/*
-
-    // deleting the linked list
-    current = head;
-
-    while (current) {
-        head = current->next;
-        delete current;
-        current = head;
-    }
-
-    head = nullptr;
-    output(head);
-*/
     return 0;
 }
 
@@ -174,7 +157,7 @@ void insertNode(Node *&head){
     int entry;
     float value; //in case of decimal number
 
-    cout << "After which node to insert value?";
+    cout << "After which node to insert value: ";
     cin >> entry;
 
     cout << "Enter a valid value: ";
@@ -200,7 +183,25 @@ void insertNode(Node *&head){
     }
 }
 
+void deleteList(Node *&head){
 
+    if (!head){
+        cout << "There is nothing to delete." << endl;
+        return;
+    }
+
+    Node *current = head;
+
+    while (current){
+        head = current -> next;
+        delete current;
+        current = head;
+    }
+
+    head = nullptr;
+
+    cout << "\nList deleted." << endl;
+}
 
 void output(Node *hd) {
 
@@ -211,6 +212,7 @@ void output(Node *hd) {
 
     int count = 1;
     Node *current = hd;
+    cout << "\n";
     while (current) {
         cout << "[" << count++ << "] " << current->value << endl;
         current = current->next;
