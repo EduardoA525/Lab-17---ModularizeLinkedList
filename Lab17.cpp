@@ -25,98 +25,60 @@ void output(Node *);
 
 int main() {
     Node *head = nullptr;
-    int count = 0;
+    int menuChoice;
 
-    // create a linked list of size SIZE with random numbers 0-99
-    for (int i = 0; i < SIZE; i++) {
-        int tmp_val = rand() % 100;
-        Node *newVal = new Node;
+    do {
+        cout << " > Choose a number to do < " << endl;
+        cout << "-------------------------" << endl;
+        cout << "1. Add node to front" << endl;
+        cout << "2. Add node to end" << endl;
+        cout << "3. Delete a node" << endl;
+        cout << "4. Insert a node" << endl;
+        //cout << "5. Delete the list" << endl;
+        cout << "6. Print the list" << endl;
+        cout << "7. Exit" << endl;
+        cout << "Choice --> ";
+        cin >> menuChoice;
 
-        //Adding done
+        switch (menuChoice) {
+            case 1:
+                addNodeFront(head);
+                break;
 
-        // adds node at head
-        if (!head) {
-            head = newVal;
-            newVal->next = nullptr;
-            newVal->value = tmp_val;
-        }
-        else {
-            newVal->next = head;
-            newVal->value = tmp_val;
-            head = newVal;
-        }
-    }
+            case 2:
+                addNodeTail(head);
+                break;
 
-    output(head);
+            case 3:
+                deleteNode(head);
+                break;
 
-    //Deletion done
+            case 4:
+                insertNode(head);
+                break;
+            /*
+            case 5:
+                deleteList(head);
+                break;
+            */
+            case 6:
+                output(head);
+                break;
+            
+            case 7:
+                cout << "Exiting program.\n";
+                break;
 
-    // deleting a node
-    cout << "Which node to delete? " << endl;
-    output(head);
-    int entry;
-    cout << "Choice --> ";
-    cin >> entry;
-    // traverse that many times and delete that node
-    Node *current = head;
-    Node *prev = nullptr; // start prev as nullptr to detect head deletion
-
-    for (int i = 0; i < (entry - 1); i++) {
-        prev = current;
-        current = current->next;
-    }
-
-    // at this point, delete current and reroute pointers
-    if (current) {
-        if (prev == nullptr) {
-            // deleting the head node
-            head = current->next;
-        } 
-        else {
-            prev->next = current->next;
+            default:
+                cout << "Invalid choice. Please enter 1-7.\n";
         }
 
-        delete current;
-        current = nullptr;
-    }
+    } while (menuChoice != 7); 
 
-    output(head);
 
-    //Node insertion done
 
-    // insert a node
-    cout << "After which node to insert 10000? " << endl;
-    count = 1;
-    current = head;
 
-    while (current) {
-        cout << "[" << count++ << "] " << current->value << endl;
-        current = current->next;
-    }
-
-    cout << "Choice --> ";
-    cin >> entry;
-    current = head;
-    prev = nullptr; // reset prev to nullptr for same reason
-
-    for (int i = 0; i < entry; i++) {
-        prev = current;
-        current = current->next;
-    }
-
-    // at this point, insert a node between prev and current
-    Node *newnode = new Node;
-    newnode->value = 10000;
-    newnode->next = current;
-    if (prev == nullptr) {
-        // inserting before the head
-        head = newnode;
-    } 
-    else {
-        prev->next = newnode;
-    }
-
-    output(head);
+/*
 
     // deleting the linked list
     current = head;
@@ -129,7 +91,7 @@ int main() {
 
     head = nullptr;
     output(head);
-
+*/
     return 0;
 }
 
