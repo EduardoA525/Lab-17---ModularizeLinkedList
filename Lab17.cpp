@@ -2,6 +2,9 @@
 //COMSC - 210 - 5293
 //Lab 17 - Modularize Linked List
 
+//I am passing by reference so I can easily modify the head pointer
+//without dealing with copies. 
+
 #include <iostream>
 using namespace std;
 
@@ -12,6 +15,12 @@ struct Node {
     Node *next;
 };
 
+//Prototypes
+void addNodeFront(Node *&);
+void addNodeTail(Node *&);
+void deleteNode(Node *&);
+void insertNode(Node *&);
+void deleteList(Node *&);
 void output(Node *);
 
 int main() {
@@ -116,6 +125,11 @@ int main() {
 
     return 0;
 }
+
+//Definitions
+
+
+
 
 void output(Node *hd) {
 
