@@ -31,6 +31,9 @@ int main() {
     for (int i = 0; i < SIZE; i++) {
         int tmp_val = rand() % 100;
         Node *newVal = new Node;
+
+        //**************
+
         // adds node at head
         if (!head) {
             head = newVal;
@@ -127,6 +130,40 @@ int main() {
 }
 
 //Definitions
+void addNodeFront(Node *&head){
+
+    Node *newVal = new Node;
+
+    cout << "Enter a valid value: " << endl;
+    cin >> newVal -> value;
+
+    newVal->next = head;
+    head = newVal;
+}
+
+void addNodeTail(Node *&head){
+
+    Node *newVal = new Node;
+
+    cout << "Enter a valid value: " << endl;
+    cin >> newVal -> value;
+
+    newVal -> next = nullptr;
+
+    if (!head){
+        head = newVal;
+        return;
+    }
+
+    Node *current = head;
+
+    while (current -> next) {
+        current = current -> next;
+    }
+
+    current -> next = newVal;
+}
+
 
 
 
