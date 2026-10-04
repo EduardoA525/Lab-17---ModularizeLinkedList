@@ -82,6 +82,8 @@ int main() {
 
     output(head);
 
+    //Node insertion done
+
     // insert a node
     cout << "After which node to insert 10000? " << endl;
     count = 1;
@@ -198,7 +200,43 @@ void deleteNode(Node *&head){
     current = nullptr;
 }
 
+void insertNode(Node *&head){
 
+    if (!head) {
+        cout << "List is empty." << endl;
+        return;
+    }
+
+    output(head);
+
+    int entry;
+    float value; //in case of decimal number
+
+    cout << "After which node to insert value?";
+    cin >> entry;
+
+    cout << "Enter a valid value: ";
+    cin >> value;
+
+    Node *current = head;
+    Node *prev = nullptr;
+
+    for (int i = 0; i < entry; i++){
+        prev = current;
+        current = current -> next;
+    }
+
+    Node *newnode = new Node;
+    newnode -> value = value;
+    newnode -> next = current;
+
+    if (prev == nullptr){
+        head = newnode;
+    }
+    else {
+        prev -> next = newnode;
+    }
+}
 
 
 
