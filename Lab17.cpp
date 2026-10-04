@@ -32,7 +32,7 @@ int main() {
         int tmp_val = rand() % 100;
         Node *newVal = new Node;
 
-        //**************
+        //Adding done
 
         // adds node at head
         if (!head) {
@@ -48,6 +48,8 @@ int main() {
     }
 
     output(head);
+
+    //Deletion done
 
     // deleting a node
     cout << "Which node to delete? " << endl;
@@ -134,7 +136,7 @@ void addNodeFront(Node *&head){
 
     Node *newVal = new Node;
 
-    cout << "Enter a valid value: " << endl;
+    cout << "Enter a valid value: ";
     cin >> newVal -> value;
 
     newVal->next = head;
@@ -145,7 +147,7 @@ void addNodeTail(Node *&head){
 
     Node *newVal = new Node;
 
-    cout << "Enter a valid value: " << endl;
+    cout << "Enter a valid value: ";
     cin >> newVal -> value;
 
     newVal -> next = nullptr;
@@ -162,6 +164,38 @@ void addNodeTail(Node *&head){
     }
 
     current -> next = newVal;
+}
+
+void deleteNode(Node *&head){
+
+    if (!head){
+        cout << "There is nothing to delete." << endl;
+        return;
+    }
+
+    output(head);
+
+    int entry;
+    cout << "Which node do you want to delete?";
+    cin >> entry;
+
+    Node *current = head;
+    Node *prev = nullptr;
+
+    for (int i = 0; i < (entry - 1); i++){
+        prev = current;
+        current = current -> next;
+    }
+
+    if (prev == nullptr){
+        head = current -> next;
+    }
+    else{
+        prev -> next = current -> next;
+    }
+
+    delete current;
+    current = nullptr;
 }
 
 
